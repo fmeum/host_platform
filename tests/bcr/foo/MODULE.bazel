@@ -1,0 +1,8 @@
+module(
+    name = "foo",
+)
+
+bazel_dep(name = "host_platform", version = "")
+
+host_platform = use_extension("@host_platform//:extensions.bzl", "host_platform")
+host_platform.add_constraints(bzl_file = "//:constraints.bzl")

@@ -1,0 +1,14 @@
+module(
+    name = "host_platform",
+    version = "0.0.1",
+    compatibility_level = 0,
+)
+
+bazel_dep(name = "platforms", version = "0.0.4")
+
+host_cpu_os_constraints = use_extension("//internal:extensions.bzl", "host_cpu_os_constraints")
+use_repo(host_cpu_os_constraints, "host_cpu_os_constraints")
+
+host_platform = use_extension("//:extensions.bzl", "host_platform")
+host_platform.add_constraints(bzl_file = "@host_cpu_os_constraints//:constraints.bzl")
+use_repo(host_platform, "host_platform_constraints")

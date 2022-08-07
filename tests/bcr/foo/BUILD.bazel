@@ -1,0 +1,12 @@
+package(default_visibility = ["//visibility:public"])
+
+constraint_setting(
+    name = "demo_setting",
+)
+
+constraint_value(
+    name = "detected_constraint",
+    constraint_setting = ":demo_setting",
+)
+
+exports_files(["constraints.bzl"])

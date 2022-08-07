@@ -1,0 +1,20 @@
+load(":constraints.bzl", "HOST_CONSTRAINTS")
+
+package(default_visibility = ["//visibility:public"])
+
+platform(
+    name = "host_platform",
+    # Auto-detected host platform constraints.
+    constraint_values = HOST_CONSTRAINTS,
+)
+
+filegroup(
+    name = "bzl_files",
+    srcs = [
+        "constraints.bzl",
+        "extensions.bzl",
+        "utils.bzl",
+        "//internal:bzl_files",
+        "@host_platform_constraints//:bzl_files",
+    ],
+)

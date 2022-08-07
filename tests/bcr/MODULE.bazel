@@ -1,0 +1,18 @@
+module(
+    name = "host_platform.bcr-tests",
+)
+
+bazel_dep(name = "host_platform", version = "")
+local_path_override(
+    module_name = "host_platform",
+    path = "../..",
+)
+
+bazel_dep(name = "foo", version = "")
+local_path_override(
+    module_name = "foo",
+    path = "foo",
+)
+
+host_platform = use_extension("@host_platform//:extensions.bzl", "host_platform")
+host_platform.add_constraints(bzl_file = "//:constraints.bzl")

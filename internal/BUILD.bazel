@@ -1,0 +1,8 @@
+filegroup(
+    name = "bzl_files",
+    srcs = [
+        "extensions.bzl",
+        "utils.bzl",
+    ],
+    visibility = ["//:__pkg__"],
+)

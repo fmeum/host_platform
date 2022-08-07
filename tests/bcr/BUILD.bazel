@@ -1,0 +1,23 @@
+load(":tests.bzl", "verify_constraint")
+
+package(default_visibility = ["//visibility:public"])
+
+constraint_setting(
+    name = "main_repo_setting",
+)
+
+constraint_value(
+    name = "main_repo_constraint",
+    constraint_setting = ":main_repo_setting",
+)
+
+verify_constraint(
+    name = "verify_constraint",
+)
+
+alias(
+    name = "bzl_files",
+    actual = "@host_platform//:bzl_files",
+)
+
+exports_files(["constraints.bzl"])
