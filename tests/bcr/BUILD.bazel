@@ -1,3 +1,5 @@
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+load("@stardoc//stardoc:stardoc.bzl", "stardoc")
 load(":tests.bzl", "verify_constraint")
 
 package(default_visibility = ["//visibility:public"])
@@ -15,9 +17,18 @@ verify_constraint(
     name = "verify_constraint",
 )
 
-alias(
+bzl_library(
     name = "bzl_files",
-    actual = "@host_platform//:bzl_files",
+    srcs = [
+        "@host_platform//:bzl_files",
+    ],
+)
+
+stardoc(
+    name = "docs",
+    out = "docs.md",
+    input = "print_host_constraints.bzl",
+    deps = [":bzl_files"],
 )
 
 exports_files(["constraints.bzl"])

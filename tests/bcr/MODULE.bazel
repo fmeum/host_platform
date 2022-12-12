@@ -14,5 +14,13 @@ local_path_override(
     path = "foo",
 )
 
+bazel_dep(name = "bazel_skylib", version = "1.3.0")
+bazel_dep(name = "stardoc")
+git_override(
+    module_name = "stardoc",
+    remote = "https://github.com/fmeum/stardoc",
+    commit = "62875895c267c6028cca52e884ddf029ffac8a6f",
+)
+
 host_platform = use_extension("@host_platform//:extensions.bzl", "host_platform")
 host_platform.add_constraints(bzl_file = "//:constraints.bzl")
